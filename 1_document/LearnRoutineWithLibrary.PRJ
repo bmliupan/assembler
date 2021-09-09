@@ -1,0 +1,17 @@
+
+
+[LINK]
+ITEM_1=LearnRoutineWithLibrary.ASM
+[DEPEND]
+ITEM_1=Header\Config.h
+ITEM_2=Macro\MyMacro.h
+ITEM_3=Macro\macro3.h
+ITEM_4=Source\KeyScan.asm
+ITEM_5=Source\FormatLib.asm
+ITEM_6=Source\Learn.asm
+ITEM_7=Source\DirectRecord.asm
+ITEM_8=Source\MTP.asm
+ITEM_9=Source\InitialIRData.asm
+ITEM_10=Source\SendIRWave.asm
+ITEM_11=Source\test.asm
+ITEM_12=Source\Function.asm
