@@ -68,12 +68,18 @@ void MainWindow::on_buildButton_clicked()
     uint8_t num = 0;
     QList<QString> linkPathList;
     QList<QString> dependPathList;
+    QFileInfo fileInfo;
+    QString fileName, filePathA;
 
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         printWarnning("读取工程文件失败！");
         return;
     }
     printNormal("工程文件解析中...");
+    fileInfo = QFileInfo(filePath);
+    fileName = fileInfo.fileName();
+    filePathA = fileInfo.absolutePath();
+
     QTextStream prjStream(&file);
     while (!prjStream.atEnd()) {
         QString str = prjStream.readLine();
@@ -85,11 +91,15 @@ void MainWindow::on_buildButton_clicked()
         }
         if ((flag == 1) && str.contains("ITEM", Qt::CaseSensitive)) {
            num = str.indexOf("=") + 1;
-           linkPathList.append(str.mid(num));
+           str = filePathA + "/" + str.mid(num);
+           str = QDir::fromNativeSeparators(str);
+           linkPathList.append(str);
         }
         if ((flag == 2) && str.contains("ITEM", Qt::CaseSensitive)) {
            num = str.indexOf("=") + 1;
-           dependPathList.append(str.mid(num));
+           str = filePathA + "/" + str.mid(num);
+           str = QDir::fromNativeSeparators(str);
+           dependPathList.append(str);
         }
         printNormal(str);
     }
